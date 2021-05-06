@@ -20,7 +20,7 @@ setInterval(function () {
   element.classList.add("border-left-success");
 
 
-}, 600);
+}, 500);
 
 
 function CheckLogin(){
@@ -142,12 +142,12 @@ function fetchAllocated(){
     })
       .then((res) => res.json())
       .then((data) => {
-          console.log(data);
+        
         let li = `
         <thead>
             <tr>
-              <th scope="col">Device Name</th>
-              <th scope="col">Unique Code</th>
+              <th scope="col" >Device Name</th>
+              <th scope="col" >Unique Code</th>
               <th scope="col">Assigned To</th>
               <th scope="col">Assigned Date</th>
               <th scope="col">Assigned By</th>
@@ -183,7 +183,7 @@ console.log(qr);
         document.getElementById("Table").innerHTML = li;
   
         // do something with data
-        console.log(data);
+        
       })
       .catch(function (error) {
         console.log("Looks like there was a problem: \n", error);
@@ -270,7 +270,7 @@ console.log(newDeviceInfo);
     .then((res) => res.json())
     .then((data) => {
       document.getElementById("spin2").style.display="none";
-      console.log(data+ "deleted  data");
+      
       if(data == 0)
       {
        swal("Oops! You cannot add this device!", {
@@ -337,7 +337,7 @@ function fetchEmployeeEmail(deviceId) {
         document.getElementById("employeeDropdown").innerHTML = li;
   
         // do something with data
-        console.log(data);
+        
       })
       .catch(function (error) {
         console.log("Looks like there was a problem: \n", error);
@@ -528,7 +528,7 @@ function auditTrail(uniqueCode) {
         
   
         // do something with data
-        console.log(data);
+        
       })
       .catch(function (error) {
         console.log("Looks like there was a problem: \n", error);
@@ -598,7 +598,7 @@ function fetchAllocatedCategory() {
     .then((res) => res.json())
     .then((data) => {
       document.getElementById("spin2").style.display="none";
-        console.log(data);
+      
       let li = ` <div class="col-xl-3 col-md-6 mb-4 cp" id="addCategory" data-toggle="modal" data-target="#myModalAddDevice" onclick="clearCategory();clearVal();"> 
       <div class="card border-left-warning shadow h-100 py-2">
           <div class="card-body">
@@ -640,7 +640,7 @@ function fetchAllocatedCategory() {
       document.getElementById("appendCard").innerHTML = li;
 
       // do something with data
-      console.log(data);
+      
     })
     .catch(function (error) {
       console.log("Looks like there was a problem: \n", error);
@@ -674,7 +674,7 @@ function fetchFreeCategory() {
     .then((res) => res.json())
     .then((data) => {
       document.getElementById("spin2").style.display="none";
-        console.log(data);
+        
       let li = `
       <div class="col-xl-3 col-md-6 mb-4 cp" id="addCategory" data-toggle="modal" data-target="#myModalAddDevice" onclick="clearCategory();clearVal()"> 
       <div class="card border-left-warning shadow h-100 py-2">
@@ -695,7 +695,7 @@ function fetchFreeCategory() {
   </div>
       `;
       data.forEach((TempUser) => {
-         console.log(TempUser +"THis si category");
+         
         li += ` 
         <div class="col-xl-3 col-md-6 mb-4" onclick="selectCategory(${TempUser.categoryId})" style="cursor:pointer;">
         <div class="card shadow h-100 py-2" id="categoryData${TempUser.categoryId}">
@@ -724,7 +724,7 @@ function fetchFreeCategory() {
       document.getElementById("appendCard").innerHTML = li;
 
       // do something with data
-      console.log(data);
+    
     })
     .catch(function (error) {
       console.log("Looks like there was a problem: \n", error);
@@ -755,7 +755,7 @@ function addDeviceCatgoryModal() {
   })
     .then((response) => response.text())
     .then((response) => {
-      console.log("Bearer " + response);
+      
       var obj = JSON.parse(response);
 
     })
