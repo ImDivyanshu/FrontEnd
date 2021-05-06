@@ -8,11 +8,19 @@ var designation= "";
 function onLoadAdmin(){
  CheckLogin();
   fetchFree();
+  
  id = window.localStorage.getItem("id").toString();
  fetchEmployeeInfo();
  fetchAdminInfo();
  
 }
+setInterval(function () {
+  
+  var element = document.getElementById(`categoryData${category}`);
+  element.classList.add("border-left-success");
+
+
+}, 600);
 
 
 function CheckLogin(){
@@ -25,6 +33,7 @@ function CheckLogin(){
 }
 
 function fetchAdminInfo(){
+  
   document.getElementById("spin2").style.display="block";
   fetch(`https://localhost:44327/api/employee/profile/${id}`,{
     mode: 'cors', // no-cors, *cors, same-origin
@@ -58,11 +67,9 @@ function fetchAdminInfo(){
 }
 
 
-
-
-
 function fetchFree(){
   fetchFreeCategory();
+  
   document.getElementById("spin2").style.display="block";
 	fetch(`https://localhost:44327/api/deviceinfo/data?isAssigned=false&&categoryId=${category}`,{
         mode: 'cors', // no-cors, *cors, same-origin
@@ -117,6 +124,7 @@ document.getElementById("allocated").style.backgroundColor="gray";
 }
 
 function fetchAllocated(){
+  
   document.getElementById("spin2").style.display="block";
   fetchAllocatedCategory();
     fetch(`https://localhost:44327/api/deviceinfo/data?isAssigned=true&&categoryId=${category}`, {
@@ -188,6 +196,11 @@ console.log(qr);
 
 function addDeviceDashboard(){
   clearVal();
+  setInterval(function () {
+  var element = document.getElementById(`categoryData${category}`);
+  element.classList.add("border-left-success");
+}, 1);
+
   document.getElementById("spin2").style.display="block";
     fetch(`https://localhost:44327/api/deviceinfo/categorylist`, {
       mode: "cors", // no-cors, *cors, same-origin
@@ -225,6 +238,12 @@ function addDeviceDashboard(){
 
 
 function addDeviceModal(){
+  setInterval(function () {
+  var element = document.getElementById(`categoryData${category}`);
+  element.classList.add("border-left-success");
+}, 1);
+
+
     var unique = document.getElementById("uniquecode").value;
   var device = document.getElementById("newDeviceName").value;
   var type=document.getElementById("categoryDropdown").value;
@@ -292,6 +311,7 @@ function fetchEmployeeEmail(deviceId) {
   console.log(deviceId + "My Device Id");
   document.getElementById("spin2").style.display="block";
   globalDeviceId= deviceId;
+
   fetch(`https://localhost:44327/api/employee/employeeEmail`, {
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -326,6 +346,8 @@ function fetchEmployeeEmail(deviceId) {
 }
 
 function fetchEmployeeInfo(){
+
+
   document.getElementById("spin2").style.display="block";
   fetch(`https://localhost:44327/api/employee/profile/${id}`,{
     mode: 'cors', // no-cors, *cors, same-origin
@@ -357,6 +379,8 @@ function fetchEmployeeInfo(){
 
 
 function allocateEmployee(){
+ 
+
   var date = new Date();
   var assignedDate = date.toISOString().slice(0, 10);
   var employeeId=document.getElementById("employeeDropdown").value;
@@ -389,11 +413,11 @@ console.log(globalDeviceId);
     //.then(response => response.json())
     .then((result) => {
       document.getElementById("spin2").style.display="none";
-      swal({
-        title: "Success",
-        text: "Device Allocated Successfully!",
-        icon: "success",
-      });
+      // swal({
+      //   title: "Success",
+      //   text: "Device Allocated Successfully!",
+      //   icon: "success",
+      // });
     }).catch(err => {
       swal({
         title: "Oops!",
@@ -410,7 +434,8 @@ console.log(globalDeviceId);
 
 function deleteDevice(deviceDeleteId) {
   document.getElementById("spin2").style.display="block";
-   
+  
+
     var urlDelete = `https://localhost:44327/api/deviceInfo/${deviceDeleteId}`;
     console.log(deviceDeleteId);
     fetch(urlDelete, {
@@ -452,6 +477,8 @@ function deleteDevice(deviceDeleteId) {
 }
 
 function auditTrail(uniqueCode) {
+  
+
   document.getElementById("spin2").style.display="block";
   fetch(`https://localhost:44327/api/deviceInfo/auditTrail/${uniqueCode}`, {
       mode: "cors", // no-cors, *cors, same-origin
@@ -509,6 +536,8 @@ function auditTrail(uniqueCode) {
 }
 
 function deallocate(deviceDeallocateId){
+  
+
   document.getElementById("spin2").style.display="block";
   fetch(`https://localhost:44327/api/deviceInfo/deallocate/${deviceDeallocateId}`, {
     method: "PUT",
@@ -551,6 +580,7 @@ function deallocate(deviceDeallocateId){
 
 
 function fetchAllocatedCategory() {
+
   document.getElementById("spin2").style.display="block";
   fetch(`https://localhost:44327/api/deviceInfo/categoryList`, {
     mode: "cors", // no-cors, *cors, same-origin
@@ -587,8 +617,8 @@ function fetchAllocatedCategory() {
       data.forEach((TempUser) => {
          console.log(TempUser +"THis si category");
         li += ` 
-        <div class="col-xl-3 col-md-6 mb-4" onclick="selectCategory(${TempUser.categoryId})" style="cursor:pointer;">
-        <div class="card border-left-success shadow h-100 py-2">
+        <div class="col-xl-3 col-md-6 mb-4 "  onclick="selectCategory(${TempUser.categoryId})" style="cursor:pointer;">
+        <div class="card shadow h-100 py-2" id="categoryData${TempUser.categoryId}">
           <div class="card-body">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-28px; margin-right: -12px;" onclick="deleteCategorySwal(${TempUser.categoryId})"><span aria-hidden="true">×</span></button>
             <div class="row no-gutters align-items-center">
@@ -626,6 +656,7 @@ fetchFree();
 }
 
 function fetchFreeCategory() {
+ 
   document.getElementById("spin2").style.display="block";
   fetch(`https://localhost:44327/api/deviceInfo/categoryList`, {
     mode: "cors", // no-cors, *cors, same-origin
@@ -667,7 +698,7 @@ function fetchFreeCategory() {
          console.log(TempUser +"THis si category");
         li += ` 
         <div class="col-xl-3 col-md-6 mb-4" onclick="selectCategory(${TempUser.categoryId})" style="cursor:pointer;">
-        <div class="card border-left-success shadow h-100 py-2">
+        <div class="card shadow h-100 py-2" id="categoryData${TempUser.categoryId}">
         
           <div class="card-body">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-28px; margin-right: -12px;" onclick="deleteCategorySwal(${TempUser.categoryId})"><span aria-hidden="true">×</span></button>
@@ -698,12 +729,15 @@ function fetchFreeCategory() {
     .catch(function (error) {
       console.log("Looks like there was a problem: \n", error);
     });
+    
 }
 
 function addDeviceCatgoryModal() {
+
+
+
   document.getElementById("spin2").style.display="block";
   var deviceCategory= document.getElementById("deviceCategory").value;
-
   var devCategory= {
     DeviceType: deviceCategory.toString()
   }
@@ -745,6 +779,8 @@ function addDeviceCatgoryModal() {
 }
 
 function deleteCategory(deleteId){
+ 
+
   var urlDelete = `https://localhost:44327/api/deviceInfo/deleteCategory/${deleteId}`;
   document.getElementById("spin2").style.display="block";
     fetch(urlDelete, {
@@ -786,6 +822,7 @@ function deleteCategory(deleteId){
   
 }
 function deleteCategorySwal(deleteId) {
+  
 
   swal({
     title: "Are you sure you want to delete this category?",
@@ -816,6 +853,7 @@ function fetchdetail(i){
 }
 
 function allocatemail(){
+ 
 
   document.getElementById("spin2").style.display="block";
    var email = $('#employeeDropdown :selected').text();

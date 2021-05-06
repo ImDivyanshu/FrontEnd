@@ -1,5 +1,14 @@
 
 :root {
+  --card-line-height: 1.2em;
+  --card-padding: 1em;
+  --card-radius: 0.5em;
+  --color-green: #558309;
+  --color-gray: #e2ebf6;
+  --color-dark-gray: #c4d1e1;
+  --radio-border-width: 2px;
+  --radio-size: 1.5em;
+
   --blue: #ffb347;
 
   --indigo: #6610f2;
@@ -11082,12 +11091,19 @@ form.user .btn-user {
   background-color: #ea4335;
   border-color: #fff;
 }
-.card-onclick:hover{
+
+/* .card-onclick:target{
+background-color: chartreuse;
+border-radius: 200px;
+} */
+  
+
+.card-onclick:target{
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   color: blue;
 }
 
-.card-onclick:focus{
+.card-onclick:active{
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
@@ -11453,3 +11469,5 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+

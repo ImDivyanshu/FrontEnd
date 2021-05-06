@@ -87,7 +87,7 @@ function logout() {
   
 }
 function openAdmin() {
-  location.replace("../Admin.html");
+  location.replace("../chart.html");
 }
 function openEmployee() {
   location.replace("../Employee.html");
