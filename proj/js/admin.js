@@ -6,7 +6,7 @@ var adminName="";
 var designation= "";
 
 function onLoadAdmin(){
- CheckLogin();
+ // CheckLogin();
   fetchFree();
   
  id = window.localStorage.getItem("id").toString();

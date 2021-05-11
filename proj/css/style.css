@@ -4599,7 +4599,8 @@ input[type="button"].btn-block {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  margin-left: 10px;
+  margin-left: 0px;
+  margin-top: 0px;
 }
 .text-color{
 color:#ffb347;

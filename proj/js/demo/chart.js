@@ -4,6 +4,15 @@ function onLoadCharts(){
     fetchAdminInfos();
 }
 
+function CheckLoginchart(){
+  if(localStorage.getItem("token")==null)
+  {
+    console.log("Hi Hello");
+      window.open("index.html", "_blank");
+    
+  }
+}
+
 function fetchAdminInfos(){
     
     fetch(`https://localhost:44327/api/employee/profile/${id}`,{

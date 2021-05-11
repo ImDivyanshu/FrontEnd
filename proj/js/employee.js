@@ -129,7 +129,28 @@ function fetchempemail(){
   var email = $('#empemail').val();
   var details = $('#empdetails').val();
   var Body='<br>Email: '+email+'<br>Request for Device: '+details;
+  var requestsInfo ={
+    "employeeEmail": email,
+    "deviceName": details,
+  }
+  fetch("https://localhost:44327/api/requestInfo/request", {
+    method: "POST",
+    mode: "cors", // no-cors, *cors, same-origin
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify(requestsInfo),
+  })
+    .then((response) => response.text())
+    .then((response) => {
+      
+      var obj = JSON.parse(response);
 
+    })
 
   Email.send({
     SecureToken:"91fccd48-e439-446b-ab0c-1f06552dfcb8",
