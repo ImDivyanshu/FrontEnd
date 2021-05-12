@@ -19,6 +19,7 @@ namespace ITDesk.Models
         public virtual DbSet<DeviceCategory> DeviceCategory { get; set; }
         public virtual DbSet<DeviceInfo> DeviceInfo { get; set; }
         public virtual DbSet<EmployeeInfo> EmployeeInfo { get; set; }
+        public virtual DbSet<RequestInfo> RequestInfo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -63,7 +64,7 @@ namespace ITDesk.Models
                 entity.HasKey(e => e.DeviceId);
 
                 entity.HasIndex(e => e.UniqueCode)
-                    .HasName("UQ__DeviceIn__BB96DE6F01AA82C1")
+                    .HasName("UQ__DeviceIn__BB96DE6FBC89D3CC")
                     .IsUnique();
 
                 entity.Property(e => e.AssignedBy)
@@ -121,6 +122,19 @@ namespace ITDesk.Models
                     .IsRequired()
                     .IsUnicode(false)
                     .HasDefaultValueSql("('2c9c31108265d77886569d52e0a1f883')");
+            });
+
+            modelBuilder.Entity<RequestInfo>(entity =>
+            {
+                entity.Property(e => e.DeviceName)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EmployeeEmail)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
             });
         }
     }
